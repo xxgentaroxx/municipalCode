@@ -7,8 +7,9 @@ library(rgeos)
 library(sp)
 library(plotly)
 
-for(i in 15:47){
-  mapdata <- getKSJData(paste0("http://nlftp.mlit.go.jp//ksj/gml/data/N03/N03-17/N03-170101_",i,"_GML.zip"))
+for(i in 1:47){
+  num <- ifelse(i<10, paste0("0",i), i)
+  mapdata <- getKSJData(paste0("http://nlftp.mlit.go.jp//ksj/gml/data/N03/N03-17/N03-170101_",num,"_GML.zip"))
   mapdata <- mapdata[[1]]
   shiku <- ifelse(!is.na(mapdata$N03_003)&!is.na(mapdata$N03_004),
                   paste0(mapdata$N03_003,mapdata$N03_004),
